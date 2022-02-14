@@ -21,6 +21,12 @@
 
 <main>
     <div id="track-list">
+        <div *ngFor="let track of savedTracks">
 
+            <strong>Id: {{track.id}}</strong>
+            <strong>Name: {{track.name}}</strong>
+            <strong>Album: {{track.album.name}}</strong>
+            <img src={{track.album.images[0].url}} alt="">
+        </div>
     </div>
 </main>

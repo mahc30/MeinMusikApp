@@ -2,7 +2,7 @@ export interface SeveralTracksResponse {
   tracks: Track[];
 }
 
-interface Track {
+export interface Track {
   album: Album;
   artists: Artist2[];
   available_markets: string[];

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { deleteToken } from 'src/app/helpers/localStorage';
-import { SeveralTracksResponse } from 'src/app/models/tracks/several-tracks-response';
+import { Item } from 'src/app/models/tracks/item.i';
+import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
+import { SeveralTracksResponse, Track } from 'src/app/models/tracks/several-tracks-response';
 import { TrackService } from 'src/app/services/track/track.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   username = "username";
   userImg = "";
+  savedTracks: Track[] = [];
   tracks : SeveralTracksResponse[] = [];
   searchTracksIds: string[] = [];
 
@@ -35,7 +38,13 @@ export class HomeComponent implements OnInit {
 
   loadUsersSavedTracks(){
     this.trackService.getSavedTracks().subscribe(res => {
-      console.log(res);
+      const items : Item[] = res.items as Item[];
+
+      items.forEach(item => {
+        this.savedTracks.push(item.track as Track);
+      });
+      
+      console.log(this.savedTracks)
     })
   }
   
