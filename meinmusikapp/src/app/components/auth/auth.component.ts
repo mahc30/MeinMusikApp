@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     const code = this.route.snapshot.queryParamMap.get('code') || "";
     const state = this.route.snapshot.queryParamMap.get('state') || "";
-    if(code.length === 0 || state.length === 0) alert("Error in params")
+    if(code.length === 0 || state.length === 0) this.router.navigate(['login'])
     const authResponse: AuthResponse = {code: code, state: state}
 
     this.authService.requestToken(authResponse).subscribe(tokenResponse => {

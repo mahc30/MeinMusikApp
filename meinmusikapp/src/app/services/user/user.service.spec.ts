@@ -47,8 +47,6 @@ describe('UserService', () => {
 
   it('should get user artists on valid request', () => {
     service.getFollowedArtists().subscribe(res => {
-      console.log("NO ERROR")
-      console.log(res.artists.items);
       expect(res.artists.items).toBeTruthy();
       expect(res.artists.items.length).toBe(1)
       expect(res.artists.items[0].name).toBe("Hannah Montana");

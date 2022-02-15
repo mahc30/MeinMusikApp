@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   username = "username";
   userImg = "";
   displayTracks: Track[] = [];
-  tracks : SeveralTracksResponse[] = [];
+  //tracks : SeveralTracksResponse[] = [];
   searchTracksIds: string[] = [];
 
   constructor(private userService: UserService, 
@@ -37,8 +37,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  
-  
   loadUsersRecommendedTracks(){
     
     let genres = this.trackService.getGenres()
@@ -75,12 +73,14 @@ export class HomeComponent implements OnInit {
     
   }
 
+  /*
   searchTracks(): void {
 
     this.trackService.getSeveralTracks(this.searchTracksIds).subscribe(res => {
       this.tracks = res;
     });
   }
+  */
 
   goToSaved(): void{
     this.router.navigate(["saved"])
