@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { deleteToken } from 'src/app/helpers/localStorage';
-import { Item } from 'src/app/models/tracks/item.i';
-import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
+import { queryBuilder } from 'src/app/helpers/queryBuilder';
 import { SeveralTracksResponse, Track } from 'src/app/models/tracks/several-tracks-response';
 import { TrackService } from 'src/app/services/track/track.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   username = "username";
   userImg = "";
-  savedTracks: Track[] = [];
+  displayTracks: Track[] = [];
   tracks : SeveralTracksResponse[] = [];
   searchTracksIds: string[] = [];
 
@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUser();
-    this.loadUsersSavedTracks();
+    //this.loadUsersSavedTracks();
+    this.loadUsersRecommendedTracks();
   }
 
   loadUser(): void {
@@ -38,16 +39,49 @@ export class HomeComponent implements OnInit {
 
   loadUsersSavedTracks(){
     this.trackService.getSavedTracks().subscribe(res => {
-      const items : Item[] = res.items as Item[];
 
-      items.forEach(item => {
-        this.savedTracks.push(item.track as Track);
+      res.items.forEach(item => {
+        this.displayTracks.push(item.track as Track);
       });
-      
-      console.log(this.savedTracks)
-    })
+    });
   }
   
+  loadUsersRecommendedTracks(){
+    
+    let genres = this.trackService.getGenres()
+    let artists = this.userService.getFollowedArtists();
+    let tracks = this.trackService.getSavedTracks();
+
+    forkJoin([genres, artists, tracks]).subscribe(results => {
+     
+      let artistIds : string[] = []
+      results[1].artists.items.slice(0,2).forEach(artist => { //Get first 2 artist ids
+        artistIds.push(artist.id)
+      })
+
+      let tracksIds : string[] = [];
+      results[2].items.slice(0,2).forEach(item => {
+        tracksIds.push(item.track.id)
+      })
+
+      let seedGenres = results[0].genres.slice(0,1).join(",");
+      let seedArtists = artistIds.join(",");
+      let seedTracks = tracksIds.join(",");
+      
+      let query = queryBuilder("", {seed_artists: seedArtists, seed_genres: seedGenres, seed_tracks: seedTracks});
+      
+      this.trackService.getRecommendations(query).subscribe(res => {
+        res.tracks.forEach(track => {
+          this.displayTracks.push(track as Track);
+        })
+      })
+
+    }, err => {
+      console.log(err)
+    });
+    
+  }
+
   searchTracks(): void {
 
     this.trackService.getSeveralTracks(this.searchTracksIds).subscribe(res => {
