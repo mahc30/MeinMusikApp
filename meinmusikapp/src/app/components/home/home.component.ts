@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { deleteToken } from 'src/app/helpers/localStorage';
 import { queryBuilder } from 'src/app/helpers/queryBuilder';
-import { SeveralTracksResponse, Track } from 'src/app/models/tracks/several-tracks-response';
+import { SeveralTracksResponse } from 'src/app/models/tracks/several-tracks-response';
+import { Track } from 'src/app/models/tracks/track.i';
 import { TrackService } from 'src/app/services/track/track.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -26,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUser();
-    //this.loadUsersSavedTracks();
     this.loadUsersRecommendedTracks();
   }
 
@@ -37,14 +37,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  loadUsersSavedTracks(){
-    this.trackService.getSavedTracks().subscribe(res => {
-
-      res.items.forEach(item => {
-        this.displayTracks.push(item.track as Track);
-      });
-    });
-  }
+  
   
   loadUsersRecommendedTracks(){
     
@@ -67,12 +60,12 @@ export class HomeComponent implements OnInit {
       let seedGenres = results[0].genres.slice(0,1).join(",");
       let seedArtists = artistIds.join(",");
       let seedTracks = tracksIds.join(",");
-      
+
       let query = queryBuilder("", {seed_artists: seedArtists, seed_genres: seedGenres, seed_tracks: seedTracks});
       
       this.trackService.getRecommendations(query).subscribe(res => {
         res.tracks.forEach(track => {
-          this.displayTracks.push(track as Track);
+          this.displayTracks.push(track as unknown as Track); 
         })
       })
 
@@ -87,6 +80,10 @@ export class HomeComponent implements OnInit {
     this.trackService.getSeveralTracks(this.searchTracksIds).subscribe(res => {
       this.tracks = res;
     });
+  }
+
+  goToSaved(): void{
+    this.router.navigate(["saved"])
   }
   
   exit(): void {

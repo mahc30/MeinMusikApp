@@ -8,6 +8,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { TrackComponent } from './components/track/track.component';
+import { SavedComponent } from './components/saved/saved.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TrackComponent } from './components/track/track.component';
     AuthComponent,
     LoginComponent,
     HomeComponent,
-    TrackComponent
+    TrackComponent,
+    SavedComponent
   ],
   imports: [
     BrowserModule,

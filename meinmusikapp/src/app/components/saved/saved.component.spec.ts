@@ -2,22 +2,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { LoginComponent } from './login.component';
+import { SavedComponent } from './saved.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('SavedComponent', () => {
+  let component: SavedComponent;
+  let fixture: ComponentFixture<SavedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      declarations: [ LoginComponent ]
+      declarations: [ SavedComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(SavedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

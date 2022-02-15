@@ -1,4 +1,4 @@
-import { environment } from 'src/environments/environment';
+declare var require: any;
 const queryString = require("query-string");
 
 export function queryBuilder(baseUrl : string, options : Object){

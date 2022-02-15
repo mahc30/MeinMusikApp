@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { getToken } from 'src/app/helpers/localStorage';
 import { queryBuilder } from 'src/app/helpers/queryBuilder';
 import { getHttpOptions } from 'src/app/helpers/requests/httpHeaders';
 import { FollowedArtistsResponse } from 'src/app/models/user/followed-artists-response.i';
