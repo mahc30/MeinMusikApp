@@ -28,6 +28,7 @@ export class AuthComponent implements OnInit {
 
   requestToken(authResponse: AuthResponse): void{
     this.authService.requestToken(authResponse).subscribe(tokenResponse => {
+
       setToken(tokenResponse.access_token);
       this.redirect('home')
     });

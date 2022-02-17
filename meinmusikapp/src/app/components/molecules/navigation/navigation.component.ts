@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { deleteToken } from 'src/app/helpers/localStorage';
+import { deleteToken, getUserImgUrl, getUsername, setUserImgUrl, setUsername } from 'src/app/helpers/localStorage';
 import { UserInfo } from 'src/app/models/user/user-info.i';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,24 +11,40 @@ import { UserInfo } from 'src/app/models/user/user-info.i';
 })
 export class NavigationComponent implements OnInit {
 
-  @Input() public userInfo: UserInfo | any;
+  @Input() public userInfo: any;
 
-  constructor(private router: Router) { 
+  constructor(private userService: UserService, private router: Router) { 
     this.userInfo = {
-      display_name: "USERNAME",
-      images: [{url: "", width: 0, height: 0}],
+      display_name: getUsername() || "USERNAME",
+      images: [{url: getUserImgUrl || "", width: 0, height: 0}],
     };
   }
 
   ngOnInit(): void {
+    this.loadUser();
   }
 
   goToSaved(): void{
     this.router.navigate(["saved"])
   }
+
+  goToHome(): void{
+    this.router.navigate(["home"]);
+  }
   
   exit(): void {
-    deleteToken();
+    localStorage.clear();
     this.router.navigate(["login"])
+  }
+  
+  loadUser(): void {
+    this.userService.getCurrentUserProfile().subscribe(res => {
+      setUsername(res.display_name)
+      setUserImgUrl(res.images[0].url)
+      this.userInfo = {
+        display_name: getUsername() || "USERNAME",
+        images: [{url: getUserImgUrl || "", width: 0, height: 0}],
+      };
+    });
   }
 }

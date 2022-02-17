@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { setUserImgUrl, setUsername } from 'src/app/helpers/localStorage';
 import { queryBuilder } from 'src/app/helpers/queryBuilder';
 import { RequestTypes } from 'src/app/models/enums/enums';
 import { Track } from 'src/app/models/tracks/track.i';
@@ -15,7 +16,6 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  userInfo!: UserInfo;
   displayTracks: Track[] = [];
 
   constructor(private userService: UserService, 
@@ -23,14 +23,7 @@ export class HomeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.loadUser();
     this.loadUserTopTracks();
-  }
-
-  loadUser(): void {
-    this.userService.getCurrentUserProfile().subscribe(res => {
-      this.userInfo = res;
-    });
   }
 
   loadUsersRecommendedTracks(){

@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SavedComponent } from './components/saved/saved.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: HomeComponent },
   { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},

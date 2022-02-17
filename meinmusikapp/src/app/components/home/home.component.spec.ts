@@ -16,7 +16,6 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let userService: UserService;
-  let tracksService: TrackService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,7 +25,6 @@ describe('HomeComponent', () => {
     })
     .compileComponents();
     userService = TestBed.inject(UserService);
-    tracksService = TestBed.inject(TrackService)
   });
 
   beforeEach(() => {

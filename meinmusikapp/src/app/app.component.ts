@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
     
   }
 
+  isAuth(){
+    return getToken() != null;
+  }
   
   title = 'meinmusikapp';
 }
