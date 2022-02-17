@@ -17,12 +17,19 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     const code = this.route.snapshot.queryParamMap.get('code') || "";
     const state = this.route.snapshot.queryParamMap.get('state') || "";
-    if(code.length === 0 || state.length === 0) this.router.navigate(['login'])
+    if(!code.length || !state.length) this.redirect('login')
     const authResponse: AuthResponse = {code: code, state: state}
+    this.requestToken(authResponse);
+  }
 
+  redirect(route: string): void {
+    this.router.navigate([route])
+  }
+
+  requestToken(authResponse: AuthResponse): void{
     this.authService.requestToken(authResponse).subscribe(tokenResponse => {
       setToken(tokenResponse.access_token);
-      this.router.navigate(['home'])
+      this.redirect('home')
     });
   }
 

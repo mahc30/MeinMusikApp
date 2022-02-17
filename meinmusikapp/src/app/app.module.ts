@@ -11,6 +11,7 @@ import { TrackComponent } from './components/molecules/track/track.component';
 import { SavedComponent } from './components/saved/saved.component';
 import { TracksGridComponent } from './components/molecules/tracks-grid/tracks-grid.component';
 import { NavigationComponent } from './components/molecules/navigation/navigation.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NavigationComponent } from './components/molecules/navigation/navigatio
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

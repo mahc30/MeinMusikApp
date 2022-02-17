@@ -8,7 +8,7 @@ import { Track } from 'src/app/models/tracks/track.i';
 })
 export class TracksGridComponent implements OnInit {
 
-  @Input() displayTracks: Track[] = [];
+  @Input() public displayTracks: Track[] = [];
 
   constructor() { }
 

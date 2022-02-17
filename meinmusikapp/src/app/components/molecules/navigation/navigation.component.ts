@@ -10,9 +10,14 @@ import { UserInfo } from 'src/app/models/user/user-info.i';
 })
 export class NavigationComponent implements OnInit {
 
-  @Input() userInfo!: UserInfo;
+  @Input() public userInfo: UserInfo | any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.userInfo = {
+      display_name: "USERNAME",
+      images: [{url: "", width: 0, height: 0}],
+    };
+  }
 
   ngOnInit(): void {
   }

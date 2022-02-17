@@ -10,7 +10,7 @@
             </li>
             <li class="mr-6">
                 <img src={{userInfo.images[0].url}} alt="" srcset="">
-                <a class="text-blue-500 hover:text-blue-800" href="#">{{userInfo.display_name}}</a>
+                <a class="text-blue-500 hover:text-blue-800" href="#">{{userInfo.display_name || "Loading Username..."}}</a>
             </li>
             <li class="mr-6">
                 <a class="text-gray-400 cursor-not-allowed" (click)="exit()">SALIR</a>

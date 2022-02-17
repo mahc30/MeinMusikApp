@@ -11,7 +11,6 @@ import { mockMeResponse, mockTopItemsResponse } from 'src/app/services/user/test
 import { UserService } from 'src/app/services/user/user.service';
 
 import { HomeComponent } from './home.component';
-import { mockRecommendations } from './test-data/mock-recommendations-response.db';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -39,13 +38,6 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should display spotify username', () => {
-    expect(component.username).toBe("username") //default value
-    spyOn(userService, 'getCurrentUserProfile').and.returnValue(of(mockMeResponse))
-    component.loadUser();
-    expect(component.username).toBe("Angel") //default value
-  })
 
   it('should display user top tracks', () => {
     expect(component.displayTracks.length).toBe(0)
