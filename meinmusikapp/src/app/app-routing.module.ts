@@ -8,6 +8,7 @@ import { SavedComponent } from './components/saved/saved.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: '**', component: HomeComponent },
   { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},

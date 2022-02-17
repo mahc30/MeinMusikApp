@@ -42,8 +42,8 @@ export class NavigationComponent implements OnInit {
       setUsername(res.display_name)
       setUserImgUrl(res.images[0].url)
       this.userInfo = {
-        display_name: getUsername() || "USERNAME",
-        images: [{url: getUserImgUrl || "", width: 0, height: 0}],
+        display_name: getUsername(),
+        images: [{url: getUserImgUrl(), width: 0, height: 0}],
       };
     });
   }
