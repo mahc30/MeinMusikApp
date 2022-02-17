@@ -7,6 +7,7 @@ import { GenresResponse } from 'src/app/models/tracks/genres-response.i';
 import { RecommendationsResponse } from 'src/app/models/tracks/recommendations-response.i';
 import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
 import { SeveralTracksResponse } from 'src/app/models/tracks/several-tracks-response';
+import { Track } from 'src/app/models/tracks/track.i';
 import { FollowedArtistsResponse } from 'src/app/models/user/followed-artists-response.i';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
@@ -39,5 +40,15 @@ export class TrackService {
   getRecommendations(query: string): Observable<RecommendationsResponse>{
     let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.recommendations + query;
     return this.http.get<RecommendationsResponse>(url, getHttpOptions())
+  }
+
+  checkUserSavedTracks(tracks: Track[]): Observable<boolean[]>{
+    let ids = tracks.map(track => track.id);
+    let query = ids.join(',');
+
+    let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.checkSavedTracks;
+    url = queryBuilder(url, {ids: query});
+
+    return this.http.get<boolean[]>(url, getHttpOptions());
   }
 }

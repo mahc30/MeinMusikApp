@@ -1,32 +1,9 @@
 <p>home works!</p>
-<header class="bg-black">
-    <nav class="flex justify-center align-middle">
-        <ul class="flex">
-            <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800" href="#">LOGO</a>
-            </li>
-            <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800" (click)="goToSaved()">FAVORITOS</a>
-            </li>
-            <li class="mr-6">
-                <img src={{userImg}} alt="" srcset="">
-                <a class="text-blue-500 hover:text-blue-800" href="#">{{username}}</a>
-            </li>
-            <li class="mr-6">
-                <a class="text-gray-400 cursor-not-allowed" (click)="exit()">SALIR</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+
+<app-navigation [userInfo]="userInfo"></app-navigation>
 
 <main>
     <div id="track-list">
-        <div *ngFor="let track of displayTracks">
-
-            <strong>Id: {{track.id}}</strong>
-            <strong>Name: {{track.name}}</strong>
-            <strong>Album: {{track.album.name}}</strong>
-            <img src={{track.album.images[0].url}} alt="">
-        </div>
+        <app-tracks-grid [displayTracks]="displayTracks"></app-tracks-grid>>
     </div>
 </main>

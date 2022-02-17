@@ -1,7 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { RequestTypes } from 'src/app/models/enums/enums';
 import { environment } from 'src/environments/environment';
-import { mockFollowedArtistsResponse, mockMeResponse } from './test-data/mockResponses';
+import { mockFollowedArtistsResponse, mockMeResponse, mockTopItemsResponse } from './test-data/mockResponses';
 
 import { UserService } from './user.service';
 
@@ -56,6 +57,19 @@ describe('UserService', () => {
     expect(req.request.method).toBe('GET')
 
     req.flush(mockFollowedArtistsResponse, {status: 200, statusText: "oka"});
+  });
+
+  it('should get top items on valid request', () => {
+    service.getTopItems(RequestTypes.Tracks).subscribe(res => {
+      expect(res.items).toBeTruthy();
+      expect(res.items.length).toBe(1)
+      expect(res.items[0].name).toBe("Piel Canela");
+    });
+
+    const req = httpTestingController.expectOne(environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.topItems + "/tracks");
+    expect(req.request.method).toBe('GET')
+
+    req.flush(mockTopItemsResponse, {status: 200, statusText: "oka"});
   });
 
 });

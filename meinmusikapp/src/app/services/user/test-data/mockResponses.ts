@@ -1,6 +1,7 @@
-import { meResponse } from "src/app/models/user/me-response.i";
+import { UserInfo } from "src/app/models/user/user-info.i";
+import { TopItemsResponse } from "src/app/models/user/top-items-response.i";
 
-export const mockMeResponse: meResponse = {
+export const mockMeResponse: UserInfo = {
   country: "CO",
   display_name: "Angel",
   email: 'angel@angel.com',
@@ -17,7 +18,11 @@ export const mockMeResponse: meResponse = {
   },
   href: '',
   id: '',
-  images: [],
+  images: [{
+    url: "url.com",
+    height: 12,
+    width: 12
+  }],
   product: '',
   type: '',
   uri: ''
@@ -39,4 +44,17 @@ export const mockFollowedArtistsResponse: any = {
     next: "string",
     total: 15,
   }
+}
+
+export const mockTopItemsResponse: TopItemsResponse = {
+  href: "",
+  items: [{
+    id: "string",
+    name: "Piel Canela",
+  }],
+  limit: 0,
+  next: "",
+  offset: 0,
+  previous: "",
+  total: 0
 }

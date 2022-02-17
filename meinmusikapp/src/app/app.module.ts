@@ -7,8 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { TrackComponent } from './components/track/track.component';
+import { TrackComponent } from './components/molecules/track/track.component';
 import { SavedComponent } from './components/saved/saved.component';
+import { TracksGridComponent } from './components/molecules/tracks-grid/tracks-grid.component';
+import { NavigationComponent } from './components/molecules/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { SavedComponent } from './components/saved/saved.component';
     LoginComponent,
     HomeComponent,
     TrackComponent,
-    SavedComponent
+    SavedComponent,
+    TracksGridComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

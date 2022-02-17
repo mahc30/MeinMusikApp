@@ -1,4 +1,4 @@
-export interface meResponse{
+export interface UserInfo{
     country: string;
     display_name: string;
     email: string;

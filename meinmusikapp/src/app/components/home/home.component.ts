@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { deleteToken } from 'src/app/helpers/localStorage';
 import { queryBuilder } from 'src/app/helpers/queryBuilder';
-import { SeveralTracksResponse } from 'src/app/models/tracks/several-tracks-response';
+import { RequestTypes } from 'src/app/models/enums/enums';
 import { Track } from 'src/app/models/tracks/track.i';
+import { UserInfo } from 'src/app/models/user/user-info.i';
 import { TrackService } from 'src/app/services/track/track.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -15,11 +15,8 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  username = "username";
-  userImg = "";
+  userInfo!: UserInfo;
   displayTracks: Track[] = [];
-  //tracks : SeveralTracksResponse[] = [];
-  searchTracksIds: string[] = [];
 
   constructor(private userService: UserService, 
     private trackService: TrackService,
@@ -27,13 +24,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUser();
-    this.loadUsersRecommendedTracks();
+    this.loadUserTopTracks();
   }
 
   loadUser(): void {
     this.userService.getCurrentUserProfile().subscribe(res => {
-      this.username = res.display_name
-      this.userImg = res.images[0].url
+      this.userInfo = res;
     });
   }
 
@@ -73,6 +69,17 @@ export class HomeComponent implements OnInit {
     
   }
 
+  loadUserTopTracks(): void {
+    this.userService.getTopItems(RequestTypes.Tracks).subscribe(res => {
+      this.displayTracks = res.items;
+
+      this.trackService.checkUserSavedTracks(this.displayTracks).subscribe(res => {
+        res.forEach((isSaved, i) => {
+          this.displayTracks[i].isSaved = isSaved;
+        })
+      })
+    });
+  }
   /*
   searchTracks(): void {
 
@@ -82,12 +89,5 @@ export class HomeComponent implements OnInit {
   }
   */
 
-  goToSaved(): void{
-    this.router.navigate(["saved"])
-  }
   
-  exit(): void {
-    deleteToken();
-    this.router.navigate(["login"])
-  }
 }

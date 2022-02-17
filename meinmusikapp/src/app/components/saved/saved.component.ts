@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class SavedComponent implements OnInit {
 
-  displayTracks: Track[] = [];
+  savedTracks: Track[] = [];
 
   constructor(private userService: UserService, 
     private trackService: TrackService,
@@ -23,11 +23,12 @@ export class SavedComponent implements OnInit {
 
   loadUsersSavedTracks(){
     this.trackService.getSavedTracks().subscribe(res => {
-
-      res.items.forEach((item, i) => {
-        i % 2 === 0 ? item.track.isSaved = true: item.track.isSaved = false;
-        this.displayTracks.push(item.track as Track);
+      res.items.forEach(item => {
+        this.savedTracks.push(item.track as Track);
+        item.track.isSaved = true;
       });
     });
   }
+
+
 }

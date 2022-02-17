@@ -2,11 +2,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
+import { RequestTypes } from 'src/app/models/enums/enums';
 import { GenresResponse } from 'src/app/models/tracks/genres-response.i';
 import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
 import { FollowedArtistsResponse } from 'src/app/models/user/followed-artists-response.i';
 import { TrackService } from 'src/app/services/track/track.service';
-import { mockMeResponse } from 'src/app/services/user/test-data/mockResponses';
+import { mockMeResponse, mockTopItemsResponse } from 'src/app/services/user/test-data/mockResponses';
 import { UserService } from 'src/app/services/user/user.service';
 
 import { HomeComponent } from './home.component';
@@ -46,6 +47,12 @@ describe('HomeComponent', () => {
     expect(component.username).toBe("Angel") //default value
   })
 
+  it('should display user top tracks', () => {
+    expect(component.displayTracks.length).toBe(0)
+    spyOn(userService, 'getTopItems').and.returnValue(of(mockTopItemsResponse))
+    component.loadUserTopTracks();
+    expect(component.displayTracks.length).toBe(1)
+  })
   /*
   it('should load user recommended tracks', ()=> {
 
