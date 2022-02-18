@@ -26,6 +26,25 @@ export class HomeComponent implements OnInit {
     this.loadUserTopTracks();
   }
 
+  loadUserTopTracks(): void {
+    this.userService.getTopItems(RequestTypes.Tracks).subscribe(res => {
+      this.displayTracks = res.items;
+
+      this.trackService.checkUserSavedTracks(this.displayTracks).subscribe(res => {
+        res.forEach((isSaved, i) => {
+          this.displayTracks[i].isSaved = isSaved;
+        })
+      })
+    });
+  }
+  /*
+  searchTracks(): void {
+
+    this.trackService.getSeveralTracks(this.searchTracksIds).subscribe(res => {
+      this.tracks = res;
+    });
+  }
+
   loadUsersRecommendedTracks(){
     
     let genres = this.trackService.getGenres()
@@ -60,25 +79,6 @@ export class HomeComponent implements OnInit {
       console.log(err)
     });
     
-  }
-
-  loadUserTopTracks(): void {
-    this.userService.getTopItems(RequestTypes.Tracks).subscribe(res => {
-      this.displayTracks = res.items;
-
-      this.trackService.checkUserSavedTracks(this.displayTracks).subscribe(res => {
-        res.forEach((isSaved, i) => {
-          this.displayTracks[i].isSaved = isSaved;
-        })
-      })
-    });
-  }
-  /*
-  searchTracks(): void {
-
-    this.trackService.getSeveralTracks(this.searchTracksIds).subscribe(res => {
-      this.tracks = res;
-    });
   }
   */
 

@@ -15,4 +15,12 @@ export class TracksGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteTrack(index: number) : void {
+    
+    console.log(index)
+    console.log(this.displayTracks[index])
+    console.log("Deleted: ", this.displayTracks.splice(index, 1)[0].name);
+    //Track Service Delete )? TODO
+  }
+
 }
