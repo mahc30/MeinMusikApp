@@ -51,6 +51,10 @@ export const mockTopItemsResponse: TopItemsResponse = {
   items: [{
     id: "string",
     name: "Piel Canela",
+  },
+  {
+    id: "string",
+    name: "Pain",
   }],
   limit: 0,
   next: "",

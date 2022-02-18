@@ -8,9 +8,9 @@ describe('SavedButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SavedButtonComponent ]
+      declarations: [SavedButtonComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -22,4 +22,11 @@ describe('SavedButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should Toggle isSaved property on Toggle call', () => {
+    //Default value is false
+    expect(component.isSaved).toBeFalse();
+    component.toggle();
+    expect(component.isSaved).toBeTrue();
+  })
 });

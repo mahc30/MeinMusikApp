@@ -13,9 +13,7 @@ export class SavedComponent implements OnInit {
 
   savedTracks: Track[] = [];
 
-  constructor(private userService: UserService, 
-    private trackService: TrackService,
-    private router: Router) { }
+  constructor( private trackService: TrackService) { }
 
   ngOnInit(): void {
     this.loadUsersSavedTracks();

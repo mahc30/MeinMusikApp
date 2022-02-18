@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { 
     this.userInfo = {
       display_name: getUsername() || "USERNAME",
-      images: [{url: getUserImgUrl || "", width: 0, height: 0}],
+      images: [{url: getUserImgUrl() || "", width: 0, height: 0}],
     };
   }
 

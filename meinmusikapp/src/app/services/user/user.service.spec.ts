@@ -62,7 +62,7 @@ describe('UserService', () => {
   it('should get top items on valid request', () => {
     service.getTopItems(RequestTypes.Tracks).subscribe(res => {
       expect(res.items).toBeTruthy();
-      expect(res.items.length).toBe(1)
+      expect(res.items.length).toBe(2)
       expect(res.items[0].name).toBe("Piel Canela");
     });
 

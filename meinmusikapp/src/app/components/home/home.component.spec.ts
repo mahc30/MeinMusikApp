@@ -3,19 +3,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RequestTypes } from 'src/app/models/enums/enums';
-import { GenresResponse } from 'src/app/models/tracks/genres-response.i';
-import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
-import { FollowedArtistsResponse } from 'src/app/models/user/followed-artists-response.i';
+import { Track } from 'src/app/models/tracks/track.i';
 import { TrackService } from 'src/app/services/track/track.service';
-import { mockMeResponse, mockTopItemsResponse } from 'src/app/services/user/test-data/mockResponses';
+import { mockTopItemsResponse } from 'src/app/services/user/test-data/mockResponses';
 import { UserService } from 'src/app/services/user/user.service';
 
 import { HomeComponent } from './home.component';
+import { mockDisplayTracks } from './test-data/mock-recommendations-response.db';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let userService: UserService;
+  let trackService: TrackService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +25,7 @@ describe('HomeComponent', () => {
     })
     .compileComponents();
     userService = TestBed.inject(UserService);
+    trackService = TestBed.inject(TrackService);
   });
 
   beforeEach(() => {
@@ -39,10 +40,23 @@ describe('HomeComponent', () => {
 
   it('should display user top tracks', () => {
     expect(component.displayTracks.length).toBe(0)
-    spyOn(userService, 'getTopItems').and.returnValue(of(mockTopItemsResponse))
+    spyOn(userService, 'getTopItems').withArgs(RequestTypes.Tracks).and.returnValue(of(mockTopItemsResponse));
+    spyOn(component, 'updateDisplayTracksIsSaved');
+
     component.loadUserTopTracks();
-    expect(component.displayTracks.length).toBe(1)
+    expect(component.displayTracks.length).toBe(2)
+    expect(component.displayTracks[0].name).toBe("Piel Canela")
+    expect(component.displayTracks[1].name).toBe("Pain");
+  });
+
+  it('should update isSaved property for every track', () => {
+    const mockCheck: boolean[] = [true, false]
+    spyOn(trackService,'checkUserSavedTracks').withArgs(mockDisplayTracks as unknown[] as Track[]).and.returnValue(of(mockCheck));
+    component.updateDisplayTracksIsSaved(mockDisplayTracks as unknown[] as Track[])
+    expect(trackService.checkUserSavedTracks).toHaveBeenCalled()
   })
+
+  
   /*
   it('should load user recommended tracks', ()=> {
 

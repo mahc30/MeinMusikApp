@@ -16,7 +16,7 @@ export interface Track {
     track_number: number;
     type: string;
     uri: string;
-    isSaved: boolean;
+    isSaved?: boolean;
 }
 
 

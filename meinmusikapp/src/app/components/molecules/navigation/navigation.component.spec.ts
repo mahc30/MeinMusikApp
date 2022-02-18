@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { getToken, getUserImgUrl, getUsername, setToken } from 'src/app/helpers/localStorage';
 import { mockMeResponse } from 'src/app/services/user/test-data/mockResponses';
 import { UserService } from 'src/app/services/user/user.service';
+import { LoginComponent } from '../../login/login.component';
 
 import { NavigationComponent } from './navigation.component';
 
@@ -17,7 +18,9 @@ describe('NavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([
+        {path: 'login', component: LoginComponent}
+      ])],
       providers: [UserService],
       declarations: [ NavigationComponent ]
     })
@@ -83,7 +86,7 @@ describe('NavigationComponent', () => {
   it('should initialize default values on init', () => {
     const defaultValues = {
       display_name: getUsername() || "USERNAME",
-      images: [{url: getUserImgUrl || "", width: 0, height: 0}],
+      images: [{url: getUserImgUrl() || "", width: 0, height: 0}],
     };
 
     expect(component.userInfo).toEqual(defaultValues);

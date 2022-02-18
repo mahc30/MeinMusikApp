@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SpotifyError } from 'src/app/models/spotify-error.i';
 import { TracksQueryById } from 'src/app/models/tracks-query-byId.i';
 import { Track } from 'src/app/models/tracks/track.i';
 import { TrackService } from 'src/app/services/track/track.service';
@@ -36,7 +37,7 @@ export class TracksGridComponent implements OnInit {
     };
 
     this.trackService.deleteTracks(deleteQuery).subscribe(res => {
-      console.log("Track DELETED: ", track)
+    }, (err : SpotifyError) => {
     });
   }
 
@@ -46,7 +47,6 @@ export class TracksGridComponent implements OnInit {
     };
 
     this.trackService.saveTracks(saveQuery).subscribe(res => {
-      console.log("Track saved: ", track)
     });
   }
 }

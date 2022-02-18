@@ -25,4 +25,12 @@ describe('TrackComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit event with default index', () => {
+    spyOn(component.trackEvent, 'emit');
+
+    component.emitTrackEvent();
+
+    expect(component.trackEvent.emit).toHaveBeenCalledOnceWith(-1)
+  })
 });
