@@ -48,7 +48,7 @@ describe('TrackService', () => {
   })
     
   it('should save Tracks on valid Put Request', () => {
-    const mockUrl = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.checkSavedTracks;
+    const mockUrl = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.savedTracks;
     const mockQuery = {ids: "123,456,789"};
     const expectedUrl = queryBuilder(mockUrl, mockQuery);
 
@@ -63,7 +63,7 @@ describe('TrackService', () => {
   })
 
   it('should delete tracks on valid Delete Request', () => {
-    const mockUrl = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.checkSavedTracks;
+    const mockUrl = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.savedTracks;
     const mockQuery = {ids: "123,456,789"};
     const expectedUrl = queryBuilder(mockUrl, mockQuery);
 

@@ -56,13 +56,13 @@ export class TrackService {
   }
 
   saveTracks(query: TracksQueryById): Observable<any>{
-    let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.checkSavedTracks;
+    let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.savedTracks;
     url = queryBuilder(url, query)
-    return this.http.put(url, getHttpOptions());
+    return this.http.put(url, [query], getHttpOptions());
   }
 
   deleteTracks(query: TracksQueryById): Observable<any>{
-    let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.checkSavedTracks;
+    let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.savedTracks;
     url = queryBuilder(url, query)
     return this.http.delete(url, getHttpOptions());
   }

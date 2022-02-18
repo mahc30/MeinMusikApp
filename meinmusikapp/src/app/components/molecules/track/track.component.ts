@@ -12,7 +12,7 @@ export class TrackComponent implements OnInit {
   @Input() track: Track | any;
   @Input() index: number;
 
-  @Output() deleteTrackEvent = new EventEmitter<number>();
+  @Output() trackEvent = new EventEmitter<number>();
 
   constructor() { 
     this.track = {
@@ -28,8 +28,8 @@ export class TrackComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteTrack(){
-    this.deleteTrackEvent.emit(this.index);
+  emitTrackEvent(){
+    this.trackEvent.emit(this.index);
   }
 
 }
