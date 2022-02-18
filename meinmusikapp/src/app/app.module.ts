@@ -12,6 +12,8 @@ import { SavedComponent } from './components/saved/saved.component';
 import { TracksGridComponent } from './components/molecules/tracks-grid/tracks-grid.component';
 import { NavigationComponent } from './components/molecules/navigation/navigation.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SavedButtonComponent } from './components/atoms/saved-button/saved-button.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     SavedComponent,
     TracksGridComponent,
     NavigationComponent,
+    SavedButtonComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

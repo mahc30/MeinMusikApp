@@ -2,4 +2,4 @@
 <strong>Name: {{track.name}}</strong>
 <strong>Album: {{track.album.name}}</strong>
 <img src={{track.album.images[0].url}} alt="">
-<input (click)="deleteTrack()" [checked]="track.isSaved" type="checkbox" name="" id="">
+<app-saved-button (click)="deleteTrack()" [isSaved]="track.isSaved"></app-saved-button>
