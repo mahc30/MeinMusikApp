@@ -13,7 +13,8 @@ import { TracksGridComponent } from './components/molecules/tracks-grid/tracks-g
 import { NavigationComponent } from './components/molecules/navigation/navigation.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SavedButtonComponent } from './components/atoms/saved-button/saved-button.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule} from '@angular/material/button';
 import { GlobalHttpInterceptorService } from './services/interceptor/global-http-interceptor.service';
 
 @NgModule({
@@ -33,7 +34,8 @@ import { GlobalHttpInterceptorService } from './services/interceptor/global-http
     HttpClientModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }

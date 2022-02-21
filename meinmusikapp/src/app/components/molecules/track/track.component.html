@@ -1,5 +1,9 @@
-<strong>Id: {{track.id}}</strong>
-<strong>Name: {{track.name}}</strong>
-<strong>Album: {{track.album.name}}</strong>
-<img src={{track.album.images[0].url}} alt="">
-<app-saved-button (click)="emitTrackEvent()" [isSaved]="track.isSaved"></app-saved-button>
+<div class="grid grid-rows-5 h-2/6">
+    <div>
+        <strong>{{track.name}} : {{track.album.name}}</strong>
+    </div>
+
+    <img class="row-span-4" src={{track.album.images[0].url}} alt="">
+    <app-saved-button class="absolute" (click)="emitTrackEvent()" [isSaved]="track.isSaved"></app-saved-button>
+
+</div>

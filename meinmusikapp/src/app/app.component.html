@@ -1,13 +1,11 @@
-<header>
-    <div *ngIf="authService.isAuth()">
-        <app-navigation></app-navigation>
-    </div>
+<header class="bg-blue-300">
+    <app-navigation *ngIf="authService.isAuth()"></app-navigation>
 </header>
 
-<main>
-    <router-outlet></router-outlet>
+<main class="bg-slate-700">
+    <router-outlet class=""></router-outlet>
 </main>
 
-<footer>
+<footer class="bg-yellow-300">
 
 </footer>

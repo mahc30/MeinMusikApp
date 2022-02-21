@@ -1,3 +1,3 @@
-<div *ngFor="let track of displayTracks; let i = index" [attr.data-index]="i">
+<div class="overflow-y-scroll h-full w-11/12 mx-auto" *ngFor="let track of displayTracks; let i = index" [attr.data-index]="i">
     <app-track [track]="track" [index]="i" (trackEvent)="handleTrackEvent($event)"></app-track>
 </div>

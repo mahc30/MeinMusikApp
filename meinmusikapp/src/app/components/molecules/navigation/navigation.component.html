@@ -1,19 +1,26 @@
-<header class="bg-black">
-    <nav class="flex justify-center align-middle">
-        <ul class="flex">
-            <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800">LOGO</a>
-            </li>
-            <li class="mr-6">
-                <a class="text-blue-500 hover:text-blue-800" (click)="goToSaved()">FAVORITOS</a>
-            </li>
-            <li class="mr-6">
-                <img src={{userInfo.images[0].url}} alt="" srcset="">
-                <a class="text-blue-500 hover:text-blue-800" (click)="goToHome()">{{userInfo.display_name || "Loading Username..."}}</a>
-            </li>
-            <li class="mr-6">
-                <a class="text-gray-400 cursor-not-allowed" (click)="exit()">SALIR</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+<nav class="w-full h-full">
+    <ul class="grid grid-cols-5 grid-rows-1 w-full h-full">
+        <li class="float-right flex justify-center">
+            <mat-icon class="my-auto" (click)="exit()">
+                logout
+            </mat-icon>
+        </li>
+
+        <li class=" flex justify-center">
+            <mat-icon class="my-auto" (click)="goToSaved()">
+                stars
+            </mat-icon>
+        </li>
+
+        <li class="float-left flex justify-center">
+            <mat-icon class="my-auto">
+                music_note
+            </mat-icon>
+        </li>
+
+        <li class="justify-center col-span-2 px-2 w-full h-full grid grid-cols-2 grid-rows-1 text-right" (click)="goToHome()">
+            <h6 class="font-bold my-auto"> {{userInfo.display_name || "Loading Username..."}}</h6>
+            <img class="my-auto h-1/2 max-h-full aspect-square rounded-full mx-4" src={{userInfo.images[0].url}} alt="" srcset="">
+        </li>
+    </ul>
+</nav>

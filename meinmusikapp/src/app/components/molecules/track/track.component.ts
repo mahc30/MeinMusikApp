@@ -14,6 +14,8 @@ export class TrackComponent implements OnInit {
 
   @Output() trackEvent = new EventEmitter<number>();
 
+  props: Object = {}
+
   constructor() { 
     this.track = {
       id: -1,
@@ -23,6 +25,12 @@ export class TrackComponent implements OnInit {
     };
 
     this.index = -1;
+
+    this.props = {
+      eventEmitter: this.emitTrackEvent,
+      isSaved: this.track.isSaved,
+      url: this.track.url
+    }
   }
 
   ngOnInit(): void {
