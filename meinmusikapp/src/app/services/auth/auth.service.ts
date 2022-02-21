@@ -6,7 +6,9 @@ import { queryBuilder } from 'src/app/helpers/queryBuilder'
 import { getAuthorizationHeaders } from 'src/app/helpers/requests/httpHeaders';
 import { AuthResponse } from 'src/app/models/auth/auth-response.i';
 import { AccessTokenResponse } from 'src/app/models/auth/access-token-response.i';
-import { getAuthorizationParams } from 'src/app/helpers/requests/authorizationParams';
+import { getAuthorizationParams, getRefreshTokenParams } from 'src/app/helpers/requests/authorizationParams';
+import { getToken, setToken } from 'src/app/helpers/localStorage';
+import { startRefreshTokenTimeout } from 'src/app/helpers/requests/refreshTokenTimeout';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +40,16 @@ export class AuthService {
     let httpOptions = getAuthorizationHeaders();
 
     return this.http.post<AccessTokenResponse>(this.reqTokenUrl, accessTokenRequest, httpOptions)
+  }
+
+  refreshToken(): Observable<AccessTokenResponse> {
+    let refreshTokenRequest = getRefreshTokenParams();
+    let httpOptions = getAuthorizationHeaders();
+
+    return this.http.post<AccessTokenResponse>(this.reqTokenUrl, refreshTokenRequest, httpOptions);
+  }
+
+  isAuth(){
+    return getToken() !== null;
   }
 }

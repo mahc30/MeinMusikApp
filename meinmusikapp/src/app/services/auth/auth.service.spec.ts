@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { deleteToken, setToken } from 'src/app/helpers/localStorage';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from './auth.service';
@@ -36,5 +37,15 @@ describe('AuthService', () => {
     expect(req.request.method).toBe('POST')
 
     req.flush(MockRequestTokenResponse);
+  })
+
+  it('should return false if no auth token is set', () => {
+    deleteToken()
+    expect(service.isAuth()).toBeFalse();
+  })
+
+  it('should return True if auth token is set', () => {
+    setToken("TestToken");
+    expect(service.isAuth()).toBeTrue();
   })
 });

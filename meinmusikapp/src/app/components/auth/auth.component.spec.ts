@@ -70,4 +70,5 @@ it('should request Token if valid request params exists', () => {
     expect(component.redirect).toHaveBeenCalledOnceWith("home");
 
   })
+
 });

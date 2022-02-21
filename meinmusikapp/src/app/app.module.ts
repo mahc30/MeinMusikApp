@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { NavigationComponent } from './components/molecules/navigation/navigatio
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SavedButtonComponent } from './components/atoms/saved-button/saved-button.component';
 import {MatIconModule} from '@angular/material/icon';
+import { GlobalHttpInterceptorService } from './services/interceptor/global-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import {MatIconModule} from '@angular/material/icon';
     NoopAnimationsModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

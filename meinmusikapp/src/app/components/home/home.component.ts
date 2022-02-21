@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUserTopTracks();
-    this.updateDisplayTracksIsSaved(this.displayTracks)
   }
 
   loadUserTopTracks(): void {
@@ -32,7 +31,9 @@ export class HomeComponent implements OnInit {
       this.displayTracks = res.items;
       this.displayTracks.forEach(track => {
         track.isSaved = false;
-      })
+      });
+      this.updateDisplayTracksIsSaved(this.displayTracks)
+
     });
   }
 
@@ -40,7 +41,6 @@ export class HomeComponent implements OnInit {
 
     this.trackService.checkUserSavedTracks(tracks).subscribe(res => {
       res.forEach((isSaved, i) => {
-        console.log("ISSAVED:", isSaved)
         this.displayTracks[i].isSaved = isSaved;
       })
     })

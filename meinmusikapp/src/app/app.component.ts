@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getToken } from './helpers/localStorage';
-
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +10,11 @@ import { getToken } from './helpers/localStorage';
 
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     
   }
 
-  isAuth(){
-    return getToken() != null;
-  }
-  
   title = 'meinmusikapp';
 }

@@ -1,4 +1,13 @@
-<div *ngIf="isAuth()">
-    <app-navigation></app-navigation>
-</div>
-<router-outlet></router-outlet>
+<header>
+    <div *ngIf="authService.isAuth()">
+        <app-navigation></app-navigation>
+    </div>
+</header>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<footer>
+
+</footer>

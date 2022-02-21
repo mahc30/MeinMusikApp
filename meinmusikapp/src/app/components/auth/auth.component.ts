@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { setToken } from 'src/app/helpers/localStorage';
+import { setRefreshToken, setToken } from 'src/app/helpers/localStorage';
 import { AuthResponse } from 'src/app/models/auth/auth-response.i';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -30,8 +30,11 @@ export class AuthComponent implements OnInit {
     this.authService.requestToken(authResponse).subscribe(tokenResponse => {
 
       setToken(tokenResponse.access_token);
+      setRefreshToken(tokenResponse.refresh_token)
+
+      setTimeout(()=> this.authService.refreshToken(), tokenResponse.expires_in - 100 * 1000); //Refresh in expire time - 100 seconds. In millis
+
       this.redirect('home')
     });
   }
-
 }
