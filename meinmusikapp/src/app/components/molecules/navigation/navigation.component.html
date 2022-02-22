@@ -1,4 +1,4 @@
-<nav class="w-full h-full">
+<nav class="w-full h-full border border-b-2 border-solid border-black">
     <ul class="grid grid-cols-5 grid-rows-1 w-full h-full">
         <li class="float-right flex justify-center">
             <mat-icon class="my-auto" (click)="exit()">
@@ -13,14 +13,14 @@
         </li>
 
         <li class="float-left flex justify-center">
-            <mat-icon class="my-auto">
+            <mat-icon class="my-auto" (click)="goToHome()">
                 music_note
             </mat-icon>
         </li>
 
-        <li class="justify-center col-span-2 px-2 w-full h-full grid grid-cols-2 grid-rows-1 text-right" (click)="goToHome()">
-            <h6 class="font-bold my-auto"> {{userInfo.display_name || "Loading Username..."}}</h6>
-            <img class="my-auto h-1/2 max-h-full aspect-square rounded-full mx-4" src={{userInfo.images[0].url}} alt="" srcset="">
+        <li class=" justify-center col-span-2 px-2 w-full h-full grid grid-cols-2 grid-rows-1 text-right">
+            <h6 class="font-bold my-auto "> {{userInfo.display_name || "Loading Username... "}}</h6>
+            <img class="my-auto h-1/2 max-h-full aspect-square rounded-full mx-4 " src={{userInfo.images[0].url}} alt=" " srcset=" ">
         </li>
     </ul>
 </nav>
