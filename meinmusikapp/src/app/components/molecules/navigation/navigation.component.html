@@ -1,26 +1,27 @@
 <nav class="w-full h-full border border-b-2 border-solid border-black">
     <ul class="grid grid-cols-5 grid-rows-1 w-full h-full">
-        <li class="float-right flex justify-center">
-            <mat-icon class="my-auto" (click)="exit()">
-                logout
+
+        <li class="flex col-span-2 px-4 sm:px-8 w-full h-full grid-rows-1 content-start">
+            <h6 class="font-bold my-auto text-sm sm:text-base"> {{userInfo.display_name || "Loading Username... "}}</h6>
+            <img class="h-3/5 max-h-full aspect-square rounded-full mx-2 sm:mx-4 my-auto  float-left" src={{userInfo.images[0].url}} alt=" " srcset=" ">
+        </li>
+
+        <li class="flex justify-center hover:shadow-xl group">
+            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer" (click)="goToHome()">
+                home
             </mat-icon>
         </li>
 
-        <li class=" flex justify-center">
-            <mat-icon class="my-auto" (click)="goToSaved()">
+        <li class="flex justify-center hover:shadow-xl group">
+            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer" (click)="goToSaved()">
                 stars
             </mat-icon>
         </li>
 
-        <li class="float-left flex justify-center">
-            <mat-icon class="my-auto" (click)="goToHome()">
-                music_note
+        <li class="flex justify-center w-full hover:shadow-xl group">
+            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer" (click)="exit()">
+                logout
             </mat-icon>
-        </li>
-
-        <li class=" justify-center col-span-2 px-2 w-full h-full grid grid-cols-2 grid-rows-1 text-right">
-            <h6 class="font-bold my-auto "> {{userInfo.display_name || "Loading Username... "}}</h6>
-            <img class="my-auto h-1/2 max-h-full aspect-square rounded-full mx-4 " src={{userInfo.images[0].url}} alt=" " srcset=" ">
         </li>
     </ul>
 </nav>

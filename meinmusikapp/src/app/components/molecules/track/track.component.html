@@ -1,11 +1,11 @@
-<div class="grid grid-rows-4 gap-2 border-solid border-black border-2 p-3">
-    <div class="row-span-1 my-auto  grid grid-cols-6 grid-rows-2">
-        <strong class="text-base col-span-5 truncate hover:text-clip hover:whitespace-normal">{{track.album.name}}</strong>
-        <p class="text-sm sm:text-base col-span-5 truncate hover:text-clip hover:whitespace-normal">{{track.name}}</p>
+<div class="grid grid-rows-3 gap-2 border-solid border-black border-b-2 hover:border-2 p-3">
+    <div class="row-span-1 my-auto grid grid-cols-6 grid-rows-2 group">
+        <strong class="w-11/12 text-base col-span-4 truncate group-hover:text-clip group-hover:whitespace-normal ">{{track.album.name}}</strong>
+        <p class="w-11/12 text-sm sm:text-base col-span-5 truncate group-hover:text-clip group-hover:whitespace-normal">{{track.name}}</p>
         <app-saved-button class="relative bottom-4 ml-4 col-span-1 row-span-2" (click)="emitTrackEvent()" [isSaved]="track.isSaved"></app-saved-button>
     </div>
 
-    <div class="row-span-3 relative h-fit">
+    <div class="row-span-2 h-fit max-h-fit">
         <img class="w-full aspect-square my-auto" src={{track.album.images[0].url}} alt="">
     </div>
 

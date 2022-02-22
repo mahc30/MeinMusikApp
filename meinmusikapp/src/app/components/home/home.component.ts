@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { setUserImgUrl, setUsername } from 'src/app/helpers/localStorage';
-import { queryBuilder } from 'src/app/helpers/queryBuilder';
+import { ActivatedRoute, Router } from '@angular/router';
+import { getSavedTrackList, getTopTrackList, setSavedTrackList, setTopTrackList} from 'src/app/helpers/localStorage';
 import { RequestTypes } from 'src/app/models/enums/enums';
 import { Track } from 'src/app/models/tracks/track.i';
-import { UserInfo } from 'src/app/models/user/user-info.i';
 import { TrackService } from 'src/app/services/track/track.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -18,15 +15,24 @@ export class HomeComponent implements OnInit {
 
   displayTracks: Track[] = [];
 
-  constructor(private userService: UserService, 
+  constructor(private userService: UserService,
     private trackService: TrackService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.loadUserTopTracks();
+    let route = this.router.url.split('?')[0];
+    if(route === "/saved") this.loadUsersSavedTracks()
+    else this.loadUserTopTracks();
   }
 
   loadUserTopTracks(): void {
+
+    let cached = getTopTrackList();
+    if (cached != null) {
+      this.displayTracks = cached;
+      return;
+    }
+
     this.userService.getTopItems(RequestTypes.Tracks).subscribe(res => {
       this.displayTracks = res.items;
       this.displayTracks.forEach(track => {
@@ -37,13 +43,36 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  updateDisplayTracksIsSaved(tracks: Track[]): void{
+  updateDisplayTracksIsSaved(tracks: Track[]): void {
 
     this.trackService.checkUserSavedTracks(tracks).subscribe(res => {
       res.forEach((isSaved, i) => {
         this.displayTracks[i].isSaved = isSaved;
       })
+
+      if(getTopTrackList() === null){
+        setTopTrackList(this.displayTracks);
+      }
     })
+  }
+
+  loadUsersSavedTracks() {
+    let cached = getSavedTrackList();
+    if (cached != null) {
+      this.displayTracks = cached;
+      return;
+    }
+
+    this.trackService.getSavedTracks().subscribe(res => {
+      res.items.forEach(item => {
+        this.displayTracks.push(item.track as Track);
+        item.track.isSaved = true;
+      });
+
+      if(getSavedTrackList() === null){
+        setSavedTrackList(this.displayTracks);
+      }
+    });
   }
   /*
   searchTracks(): void {
@@ -90,5 +119,5 @@ export class HomeComponent implements OnInit {
   }
   */
 
-  
+
 }
