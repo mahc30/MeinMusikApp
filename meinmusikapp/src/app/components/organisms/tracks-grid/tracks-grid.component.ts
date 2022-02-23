@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { deleteSavedTrackList, deleteTopTrackList } from 'src/app/helpers/localStorage';
-import { SpotifyError } from 'src/app/models/spotify-error.i';
 import { TracksQueryById } from 'src/app/models/tracks-query-byId.i';
 import { Track } from 'src/app/models/tracks/track.i';
 import { TrackService } from 'src/app/services/track/track.service';
+import { deleteSavedTrackList, deleteTopTrackList } from 'src/app/shared/helpers/localStorage';
 
 @Component({
   selector: 'app-tracks-grid',

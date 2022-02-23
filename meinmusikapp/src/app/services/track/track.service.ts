@@ -1,17 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
-import { queryBuilder } from 'src/app/helpers/queryBuilder';
-import { getHttpOptions } from 'src/app/helpers/requests/httpHeaders';
+import { Observable } from 'rxjs';
+import { getHttpOptions } from 'src/app/shared/helpers/requests/httpHeaders';
 import { TracksQueryById } from 'src/app/models/tracks-query-byId.i';
-import { GenresResponse } from 'src/app/models/tracks/genres-response.i';
-import { RecommendationsResponse } from 'src/app/models/tracks/recommendations-response.i';
 import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
-import { SeveralTracksResponse } from 'src/app/models/tracks/several-tracks-response';
 import { Track } from 'src/app/models/tracks/track.i';
-import { FollowedArtistsResponse } from 'src/app/models/user/followed-artists-response.i';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
+import { queryBuilder } from 'src/app/shared/helpers/queryBuilder';
 
 @Injectable({
   providedIn: 'root'

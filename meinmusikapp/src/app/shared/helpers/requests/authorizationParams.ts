@@ -12,3 +12,14 @@ export function getRefreshTokenParams(){
     if(refreshToken === null) throw new Error("No refresh token")
     return new HttpParams().set("grant_type", "refresh_token").set("refresh_token", refreshToken);
   }
+
+  export function getAuthorizationConfig(){
+      return {
+        client_id: environment.CLIENT_ID,
+        response_type: "code",
+        redirect_uri: encodeURI(environment.REDIRECT_URI),
+        state: "12345",
+        show_dialog: true,
+        scope: environment.SCOPES
+      }
+  }

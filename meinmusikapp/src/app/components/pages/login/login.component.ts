@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { deleteToken } from 'src/app/helpers/localStorage';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { deleteToken } from 'src/app/shared/helpers/localStorage';
 
 @Component({
   selector: 'app-login',

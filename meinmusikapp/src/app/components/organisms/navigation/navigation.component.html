@@ -1,25 +1,19 @@
 <nav class="w-full h-full border border-b-2 border-solid border-black">
     <ul class="grid grid-cols-5 grid-rows-1 w-full h-full">
 
-        <li class="flex col-span-2 px-4 sm:px-8 w-full h-full grid-rows-1 content-start">
-            <h6 class="font-bold my-auto text-sm sm:text-base"> {{userInfo.display_name || "Loading Username... "}}</h6>
-            <img class="h-3/5 max-h-full aspect-square rounded-full mx-2 sm:mx-4 my-auto  float-left" src={{userInfo.images[0].url}} alt=" " srcset=" ">
+        <li class="flex col-span-3 px-4 sm:px-8 w-full h-full grid-rows-1 content-start group">
+            <h6 class="font-bold my-auto text-sm sm:text-base hover:text-base sm:group-hover:text-lg hover:cursor-pointer" (click)="goToHome()"> {{userInfo.display_name || "Loading Username... "}}</h6>
+            <img class="h-3/5 max-h-full aspect-square rounded-full mx-2 sm:mx-4 my-auto float-left hover:cursor-pointer" src={{userInfo.images[0].url}} alt=" " srcset=" " (click)="goToHome()">
         </li>
 
-        <li class="flex justify-center hover:shadow-xl group">
-            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer" (click)="goToHome()">
-                home
-            </mat-icon>
-        </li>
-
-        <li class="flex justify-center hover:shadow-xl group">
-            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer" (click)="goToSaved()">
+        <li class="flex justify-center hover:shadow-xl group" (click)="goToSaved() ">
+            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer">
                 stars
             </mat-icon>
         </li>
 
         <li class="flex justify-center w-full hover:shadow-xl group">
-            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer" (click)="exit()">
+            <mat-icon class="my-auto text-2xl group-hover:text-3xl sm:text-3xl sm:group-hover:text-4xl hover:cursor-pointer " (click)="exit() ">
                 logout
             </mat-icon>
         </li>

@@ -2,7 +2,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { deleteToken, setToken } from './helpers/localStorage';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -21,10 +20,6 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  })
-
-  afterEach(() => {
-    deleteToken();
   })
 
   it('should create the app', () => {

@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { deleteToken, getUserImgUrl, getUsername, setUserImgUrl, setUsername } from 'src/app/helpers/localStorage';
-import { UserInfo } from 'src/app/models/user/user-info.i';
 import { UserService } from 'src/app/services/user/user.service';
+import { getUserImgUrl, getUsername, setUserImgUrl, setUsername } from 'src/app/shared/helpers/localStorage';
 
 @Component({
   selector: 'app-navigation',

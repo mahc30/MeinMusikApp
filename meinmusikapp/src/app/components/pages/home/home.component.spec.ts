@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RequestTypes } from 'src/app/models/enums/enums';
@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user/user.service';
 
 import { HomeComponent } from './home.component';
 import { mockDisplayTracks } from '../../../shared/test-data/mock-recommendations-response.db';
+import { deleteSavedTrackList, deleteTopTrackList, setSavedTrackList, setTopTrackList } from 'src/app/shared/helpers/localStorage';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -41,6 +42,7 @@ describe('HomeComponent', () => {
 
   afterEach(() => {
     component.displayTracks = []
+    
   })
 
   it('should create', () => {
@@ -48,10 +50,17 @@ describe('HomeComponent', () => {
   });
 
   it('should call saved tracks if route is /saved', () => {
-    spyOn(component, 'loadUsersSavedTracks')
-    //spyOn(router.url, 'split').withArgs("?").and.returnValue(['/saved']);
+    spyOn(component, 'loadUserSavedTracks')
+    spyOnProperty(router, 'url', 'get').and.returnValue('/saved')
     component.ngOnInit()
-    expect(component.loadUsersSavedTracks).toHaveBeenCalled()
+    expect(component.loadUserSavedTracks).toHaveBeenCalled()
+  })
+
+  it('should call top tracks if route is not /saved', () => {
+    spyOn(component, 'loadUserTopTracks')
+    spyOnProperty(router, 'url', 'get').and.returnValue('/home')
+    component.ngOnInit()
+    expect(component.loadUserTopTracks).toHaveBeenCalled()
   })
 
   it('should display user top tracks', () => {
@@ -62,6 +71,7 @@ describe('HomeComponent', () => {
     expect(component.displayTracks.length).toBe(2)
     expect(component.displayTracks[0].name).toBe("Piel Canela")
     expect(component.displayTracks[1].name).toBe("Pain");
+    expect(component.displayTracks).toEqual(mockTopItemsResponse.items)
   });
 
   it('should update isSaved property for every track', () => {
@@ -76,10 +86,24 @@ describe('HomeComponent', () => {
   it('should load current user saved track', () => {
     spyOn(trackService, 'getSavedTracks').and.returnValue(of(mockSavedTracksResponse as unknown as SavedTracksResponse));
     spyOn(component.displayTracks, 'push')
-    component.loadUsersSavedTracks()
+    component.loadUserSavedTracks()
 
     expect(trackService.getSavedTracks).toHaveBeenCalled();
     expect(component.displayTracks.push).toHaveBeenCalled()
+  });
+
+  it('should use cached top tracks if they exist', () => {
+    setTopTrackList(mockTopItemsResponse.items);
+    component.loadUserSavedTracks()
+    expect(component.displayTracks.length).toBe(2)
+    deleteTopTrackList()
+  })
+
+  it('should use cached saved tracks if they exist', () => {
+    setSavedTrackList(mockTopItemsResponse.items);
+    component.loadUserSavedTracks()
+    expect(component.displayTracks).toEqual(mockTopItemsResponse.items)
+    deleteSavedTrackList()
   })
   /*
   it('should load user recommended tracks', ()=> {

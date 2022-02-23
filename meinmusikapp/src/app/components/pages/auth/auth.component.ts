@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { setRefreshToken, setToken } from 'src/app/helpers/localStorage';
 import { AuthResponse } from 'src/app/models/auth/auth-response.i';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { setRefreshToken, setToken } from 'src/app/shared/helpers/localStorage';
 
 
 @Component({

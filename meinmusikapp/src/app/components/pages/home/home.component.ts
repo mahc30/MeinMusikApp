@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { getSavedTrackList, getTopTrackList, setSavedTrackList, setTopTrackList} from 'src/app/helpers/localStorage';
+import { Router } from '@angular/router';
 import { RequestTypes } from 'src/app/models/enums/enums';
 import { Track } from 'src/app/models/tracks/track.i';
 import { TrackService } from 'src/app/services/track/track.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { getSavedTrackList, getTopTrackList, setSavedTrackList, setTopTrackList } from 'src/app/shared/helpers/localStorage';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     let route = this.router.url.split('?')[0];
-    if(route === "/saved") this.loadUsersSavedTracks()
+    if(route === "/saved") this.loadUserSavedTracks()
     else this.loadUserTopTracks();
   }
 
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  loadUsersSavedTracks() {
+  loadUserSavedTracks() {
     let cached = getSavedTrackList();
     if (cached != null) {
       this.displayTracks = cached;

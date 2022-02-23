@@ -1,4 +1,4 @@
-import { Track } from "../models/tracks/track.i";
+import { Track } from "src/app/models/tracks/track.i";
 
 export function getToken(): string | null {
     return localStorage.getItem("authToken");

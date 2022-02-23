@@ -1,14 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { deleteToken, getToken } from 'src/app/helpers/localStorage';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
 import { AuthComponent } from './auth.component';
 import { mockAccessTokenResponse, mockAuthResponse } from '../../../shared/test-data/mock-auth-service-data.db';
+import { deleteToken, getToken } from 'src/app/shared/helpers/localStorage';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;

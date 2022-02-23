@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { deleteToken, setToken } from 'src/app/helpers/localStorage';
+import { deleteToken, setToken } from 'src/app/shared/helpers/localStorage';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from './auth.service';

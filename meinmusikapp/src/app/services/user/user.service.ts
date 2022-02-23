@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { queryBuilder } from 'src/app/helpers/queryBuilder';
-import { getHttpOptions } from 'src/app/helpers/requests/httpHeaders';
+import { getHttpOptions } from 'src/app/shared/helpers/requests/httpHeaders';
 import { RequestTypes } from 'src/app/models/enums/enums';
 import { FollowedArtistsResponse } from 'src/app/models/user/followed-artists-response.i';
 import { UserInfo } from 'src/app/models/user/user-info.i';
 import { TopItemsResponse } from 'src/app/models/user/top-items-response.i';
 import { environment } from 'src/environments/environment';
+import { queryBuilder } from 'src/app/shared/helpers/queryBuilder';
 
 @Injectable({
   providedIn: 'root'

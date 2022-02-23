@@ -13,8 +13,8 @@ import { NavigationComponent } from './components/organisms/navigation/navigatio
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SavedButtonComponent } from './components/atoms/saved-button/saved-button.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule} from '@angular/material/button';
-import { GlobalHttpInterceptorService } from './shared/interceptor/global-http-interceptor.service';
+import { MatButtonModule } from '@angular/material/button';
+import { GlobalHttpInterceptorService } from './services/interceptor/global-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,10 +35,14 @@ import { GlobalHttpInterceptorService } from './shared/interceptor/global-http-i
     MatIconModule,
     MatButtonModule
   ],
+  exports: [
+    MatIconModule,
+    MatButtonModule
+  ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
