@@ -1,0 +1,32 @@
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+    transition: 100ms;
+}
+
+.card::before,
+.card::after {
+    position: absolute;
+    z-index: -1;
+    transition: 500ms;
+    content: '';
+    height: 100%;
+    width: 100%;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.card:hover::before,
+.card:hover::after {
+    width: 100%;
+    background: #eee;
+}
