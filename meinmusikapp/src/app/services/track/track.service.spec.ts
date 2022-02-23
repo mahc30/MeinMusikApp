@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { queryBuilder } from 'src/app/helpers/queryBuilder';
 import { environment } from 'src/environments/environment';
-import { mockCheckSavedTracksResponse, mockDeleteTrackResponse, mockSavedTracksResponse, mockSaveTrackResponse } from './test-data/mock-track-responses.db';
+import { mockCheckSavedTracksResponse, mockDeleteTrackResponse, mockSavedTracksResponse, mockSaveTrackResponse } from '../../shared/test-data/mock-track-responses.db';
 
 import { TrackService } from './track.service';
 

@@ -8,7 +8,7 @@ import { deleteToken, getToken } from 'src/app/helpers/localStorage';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { AuthComponent } from './auth.component';
-import { mockAccessTokenResponse, mockAuthResponse } from './test-data/mock-auth-service-data.db';
+import { mockAccessTokenResponse, mockAuthResponse } from '../../../shared/test-data/mock-auth-service-data.db';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;

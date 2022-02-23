@@ -38,14 +38,14 @@ export class HomeComponent implements OnInit {
       this.displayTracks.forEach(track => {
         track.isSaved = false;
       });
-      this.updateDisplayTracksIsSaved(this.displayTracks)
+      this.updateDisplayTracksIsSaved()
 
     });
   }
 
-  updateDisplayTracksIsSaved(tracks: Track[]): void {
+  updateDisplayTracksIsSaved(): void {
 
-    this.trackService.checkUserSavedTracks(tracks).subscribe(res => {
+    this.trackService.checkUserSavedTracks(this.displayTracks).subscribe(res => {
       res.forEach((isSaved, i) => {
         this.displayTracks[i].isSaved = isSaved;
       })
@@ -64,11 +64,13 @@ export class HomeComponent implements OnInit {
     }
 
     this.trackService.getSavedTracks().subscribe(res => {
-      res.items.forEach(item => {
+      res.items.forEach((item,i) => {
+
         this.displayTracks.push(item.track as Track);
-        item.track.isSaved = true;
+        this.displayTracks[i].isSaved = true;
       });
 
+      //Cache
       if(getSavedTrackList() === null){
         setSavedTrackList(this.displayTracks);
       }

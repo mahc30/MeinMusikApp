@@ -4,7 +4,7 @@ import { deleteToken, setToken } from 'src/app/helpers/localStorage';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from './auth.service';
-import { MockRequestTokenResponse } from './test-data/mock-request-token-response.db';
+import { MockRequestTokenResponse } from '../../shared/test-data/mock-request-token-response.db';
 
 describe('AuthService', () => {
   let service: AuthService;

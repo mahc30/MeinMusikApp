@@ -1,31 +1,36 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RequestTypes } from 'src/app/models/enums/enums';
+import { SavedTracksResponse } from 'src/app/models/tracks/saved-tracks-response.i';
 import { Track } from 'src/app/models/tracks/track.i';
+import { mockSavedTracksResponse } from 'src/app/shared/test-data/mock-track-responses.db';
 import { TrackService } from 'src/app/services/track/track.service';
-import { mockTopItemsResponse } from 'src/app/services/user/test-data/mockResponses';
+import { mockTopItemsResponse } from 'src/app/shared/test-data/mockResponses';
 import { UserService } from 'src/app/services/user/user.service';
 
 import { HomeComponent } from './home.component';
-import { mockDisplayTracks } from './test-data/mock-recommendations-response.db';
+import { mockDisplayTracks } from '../../../shared/test-data/mock-recommendations-response.db';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let userService: UserService;
   let trackService: TrackService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
       providers: [UserService, TrackService],
       declarations: [ HomeComponent ]
     })
     .compileComponents();
     userService = TestBed.inject(UserService);
     trackService = TestBed.inject(TrackService);
+    router = TestBed.inject(Router)
   });
 
   beforeEach(() => {
@@ -34,12 +39,22 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    component.displayTracks = []
+  })
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should call saved tracks if route is /saved', () => {
+    spyOn(component, 'loadUsersSavedTracks')
+    //spyOn(router.url, 'split').withArgs("?").and.returnValue(['/saved']);
+    component.ngOnInit()
+    expect(component.loadUsersSavedTracks).toHaveBeenCalled()
+  })
+
   it('should display user top tracks', () => {
-    expect(component.displayTracks.length).toBe(0)
     spyOn(userService, 'getTopItems').withArgs(RequestTypes.Tracks).and.returnValue(of(mockTopItemsResponse));
     spyOn(component, 'updateDisplayTracksIsSaved');
 
@@ -52,11 +67,20 @@ describe('HomeComponent', () => {
   it('should update isSaved property for every track', () => {
     const mockCheck: boolean[] = [true, false]
     spyOn(trackService,'checkUserSavedTracks').withArgs(mockDisplayTracks as unknown[] as Track[]).and.returnValue(of(mockCheck));
-    component.updateDisplayTracksIsSaved(mockDisplayTracks as unknown[] as Track[])
+
+    component.displayTracks = mockDisplayTracks as unknown as Track[];
+    component.updateDisplayTracksIsSaved()
     expect(trackService.checkUserSavedTracks).toHaveBeenCalled()
   })
 
-  
+  it('should load current user saved track', () => {
+    spyOn(trackService, 'getSavedTracks').and.returnValue(of(mockSavedTracksResponse as unknown as SavedTracksResponse));
+    spyOn(component.displayTracks, 'push')
+    component.loadUsersSavedTracks()
+
+    expect(trackService.getSavedTracks).toHaveBeenCalled();
+    expect(component.displayTracks.push).toHaveBeenCalled()
+  })
   /*
   it('should load user recommended tracks', ()=> {
 

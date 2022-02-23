@@ -25,11 +25,6 @@ export class TracksGridComponent implements OnInit {
     let track = this.displayTracks[index]
     track.isSaved ? this.deleteTrack(track) : this.saveTrack(track);
     track.isSaved = !track.isSaved;
-
-    //console.log(index)
-    //console.log(this.displayTracks[index])
-    //);
-    //Track Service Delete )? TODO
   }
 
   deleteTrack(track: Track): void {

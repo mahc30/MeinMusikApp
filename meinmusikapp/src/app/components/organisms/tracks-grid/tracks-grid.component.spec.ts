@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { TracksQueryById } from 'src/app/models/tracks-query-byId.i';
 import { Track } from 'src/app/models/tracks/track.i';
 import { TrackService } from 'src/app/services/track/track.service';
-import { mockSavedTrackObj } from './test-data/mock-track-data.db';
+import { mockSavedTrackObj } from '../../../shared/test-data/mock-track-data.db';
 
 import { TracksGridComponent } from './tracks-grid.component';
 

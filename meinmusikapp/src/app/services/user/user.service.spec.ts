@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { RequestTypes } from 'src/app/models/enums/enums';
 import { environment } from 'src/environments/environment';
-import { mockFollowedArtistsResponse, mockMeResponse, mockTopItemsResponse } from './test-data/mockResponses';
+import { mockFollowedArtistsResponse, mockMeResponse, mockTopItemsResponse } from '../../shared/test-data/mockResponses';
 
 import { UserService } from './user.service';
 

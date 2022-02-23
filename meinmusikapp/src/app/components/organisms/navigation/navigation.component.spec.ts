@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { getToken, getUserImgUrl, getUsername, setToken } from 'src/app/helpers/localStorage';
-import { mockMeResponse } from 'src/app/services/user/test-data/mockResponses';
+import { mockMeResponse } from 'src/app/shared/test-data/mockResponses';
 import { UserService } from 'src/app/services/user/user.service';
-import { LoginComponent } from '../../login/login.component';
+import { LoginComponent } from '../../pages/login/login.component';
 
 import { NavigationComponent } from './navigation.component';
 
