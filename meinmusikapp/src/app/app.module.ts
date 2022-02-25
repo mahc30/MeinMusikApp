@@ -15,6 +15,8 @@ import { SavedButtonComponent } from './components/atoms/saved-button/saved-butt
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { GlobalHttpInterceptorService } from './services/interceptor/global-http-interceptor.service';
+import { DomseguroPipe } from './pipes/domSeguroPipe';
+import { MusicEmbedComponent } from './components/atoms/music-embed/music-embed.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { GlobalHttpInterceptorService } from './services/interceptor/global-http
     TracksGridComponent,
     NavigationComponent,
     SavedButtonComponent,
+    DomseguroPipe,
+    MusicEmbedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getHttpOptions } from 'src/app/shared/helpers/requests/httpHeaders';
 import { TracksQueryById } from 'src/app/models/tracks-query-byId.i';
@@ -13,6 +13,9 @@ import { queryBuilder } from 'src/app/shared/helpers/queryBuilder';
   providedIn: 'root'
 })
 export class TrackService {
+
+  private currentTrackId: string = "";
+  public playTrackEvent : EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
@@ -61,5 +64,13 @@ export class TrackService {
     let url = environment.SPOTIFY_BASE_URL + environment.SPOTIFY_API_ENDPOINTS.savedTracks;
     url = queryBuilder(url, query)
     return this.http.delete(url, getHttpOptions());
+  }
+
+  emitPlayTrackEvent(id: string): void{
+    this.playTrackEvent.emit(id);
+  }
+
+  getCurrentTrackId(): string {
+    return this.currentTrackId;
   }
 }

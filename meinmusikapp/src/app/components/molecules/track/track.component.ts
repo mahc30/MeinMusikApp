@@ -12,7 +12,8 @@ export class TrackComponent implements OnInit {
   @Input() track: Track | any;
   @Input() index: number;
 
-  @Output() trackEvent = new EventEmitter<number>();
+  @Output() deleteTrackEvent = new EventEmitter<number>();
+  @Output() playTrackEvent = new EventEmitter<string>();
 
   props: Object = {}
 
@@ -25,19 +26,17 @@ export class TrackComponent implements OnInit {
     };
 
     this.index = -1;
-
-    this.props = {
-      eventEmitter: this.emitTrackEvent,
-      isSaved: this.track.isSaved,
-      url: this.track.url
-    }
   }
 
   ngOnInit(): void {
   }
 
-  emitTrackEvent(){
-    this.trackEvent.emit(this.index);
+  emitTrackDeleteEvent(){
+    this.deleteTrackEvent.emit(this.index);
+  }
+
+  emitTrackPlayEvent(){
+    this.playTrackEvent.emit(this.track.id)
   }
 
 }

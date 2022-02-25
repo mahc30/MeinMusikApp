@@ -18,15 +18,17 @@ export class TracksGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleTrackEvent(index: number): void {
+  handleTrackPlay(id: string){
+    this.trackService.emitPlayTrackEvent(id);
+  }
 
-
+  handleTrackDelete(index: number): void {
     let track = this.displayTracks[index]
-    track.isSaved ? this.deleteTrack(track) : this.saveTrack(track);
+    track.isSaved ? this.deleteTrack(track, index) : this.saveTrack(track);
     track.isSaved = !track.isSaved;
   }
 
-  deleteTrack(track: Track): void {
+  deleteTrack(track: Track, index: number): void {
     let deleteQuery: TracksQueryById = {
       ids: track.id
     };
@@ -34,6 +36,9 @@ export class TracksGridComponent implements OnInit {
     this.trackService.deleteTracks(deleteQuery).subscribe(res => {
       deleteTopTrackList()
       deleteSavedTrackList()
+      setTimeout(() => {
+        this.displayTracks.splice(index, 1);
+      }, 4000)
     });
   }
 
