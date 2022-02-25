@@ -5,8 +5,11 @@
         <app-saved-button class="relative bottom-4 ml-4 col-span-1 row-span-2" (click)="emitTrackDeleteEvent()" [isSaved]="track.isSaved"></app-saved-button>
     </div>
 
-    <div class="row-span-2 h-fit max-h-fit">
-        <img class="w-full aspect-square my-auto" src={{track.album.images[0].url}} alt="" (click)="emitTrackPlayEvent()">
+    <div class="row-span-2 h-fit max-h-fit relative group" (click)="emitTrackPlayEvent()">
+        <img class="w-full aspect-square my-auto group-hover:opacity-20" src={{track.album.images[0].url}} alt="">
+        <div class="absolute hidden group-hover:block bottom-2/4 left-2/4 hover:cursor-pointer">
+            <mat-icon class="relative sm:hover:text-5xl sm:hover:right-4 sm:hover:top-3"> play_circle_outline </mat-icon>
+        </div>
     </div>
 
 
