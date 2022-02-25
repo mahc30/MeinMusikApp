@@ -76,7 +76,7 @@ export class TracksGridComponent implements OnInit {
           this.removeTimeout.forEach((timeout, i) => {
             if (timeout.id === track.id) this.removeTimeout.splice(i, 1);
           })
-        }, 5000)
+        }, 6000)
       })
   }
 

@@ -1,13 +1,13 @@
-<div class="grid grid-rows-3 gap-2 border-solid border-black border-b-2 hover:border-2 p-3 card relative">
+<div class="grid grid-rows-3 gap-2 border-solid border-black border-b-2 hover:border-2 transition-all hover:transition-all p-3 card relative">
     <div class="row-span-1 my-auto grid grid-cols-6 grid-rows-2 group">
         <strong class="w-11/12 text-base col-span-4 truncate group-hover:text-clip group-hover:whitespace-normal ">{{track.album.name}}</strong>
         <p class="w-11/12 text-base col-span-5 truncate group-hover:text-clip group-hover:whitespace-normal">{{track.name}}</p>
         <app-saved-button class="relative bottom-4 ml-4 col-span-1 row-span-2" (click)="emitTrackDeleteEvent()" [isSaved]="track.isSaved"></app-saved-button>
     </div>
 
-    <div class="row-span-2 h-fit max-h-fit relative group" (click)="emitTrackPlayEvent()">
+    <div class="row-span-2 h-fit max-h-fit relative group hover:cursor-pointer" (click)="emitTrackPlayEvent()">
         <img class="w-full aspect-square my-auto group-hover:opacity-20" src={{track.album.images[0].url}} alt="">
-        <div class="absolute hidden group-hover:block bottom-2/4 left-2/4 hover:cursor-pointer">
+        <div class="absolute hidden group-hover:block bottom-2/4 left-2/4">
             <mat-icon class="relative sm:hover:text-5xl sm:hover:right-4 sm:hover:top-3"> play_circle_outline </mat-icon>
         </div>
     </div>
