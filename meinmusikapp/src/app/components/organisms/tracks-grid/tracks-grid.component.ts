@@ -5,6 +5,7 @@ import { TrackService } from 'src/app/services/track/track.service';
 import { deleteSavedTrackList, deleteTopTrackList } from 'src/app/shared/helpers/localStorage';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTrackDialogComponent } from '../../atoms/delete-track-dialog/delete-track-dialog.component';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-tracks-grid',
@@ -14,7 +15,7 @@ import { DeleteTrackDialogComponent } from '../../atoms/delete-track-dialog/dele
 export class TracksGridComponent implements OnInit {
 
   @Input() public displayTracks: Track[] = [];
-  private removeTimeout: {name: string, timeout: NodeJS.Timeout}[] = [];
+  private removeTimeout: { id: string, timeout: NodeJS.Timeout }[] = [];
 
   constructor(private trackService: TrackService, public dialog: MatDialog) { }
 
@@ -35,8 +36,8 @@ export class TracksGridComponent implements OnInit {
     let deleteQuery: TracksQueryById = {
       ids: track.id
     };
-    
-    //this.deleteTrackTimeout(track, index);
+
+    this.deleteTrackTimeout(track, index);
 
     this.trackService.deleteTracks(deleteQuery).subscribe(res => {
       deleteTopTrackList()
@@ -52,7 +53,7 @@ export class TracksGridComponent implements OnInit {
     };
 
     this.trackService.saveTracks(saveQuery).subscribe(res => {
-      //this.cancelDeleteTrackTimeout(track);
+      this.cancelDeleteTrackTimeout(track);
       deleteTopTrackList()
       deleteSavedTrackList()
     });
@@ -64,26 +65,29 @@ export class TracksGridComponent implements OnInit {
       data: { name: track.name }
     });
   }
-/*
 
-  deleteTrackTimeout(track : Track, index: number){
+  deleteTrackTimeout(track: Track, index: number) {
     this.removeTimeout.push(
       {
-        name: track.id,
+        id: track.id,
         timeout: setTimeout(() => {
           this.displayTracks.splice(index, 1);
+
+          this.removeTimeout.forEach((timeout, i) => {
+            if (timeout.id === track.id) this.removeTimeout.splice(i, 1);
+          })
         }, 5000)
       })
-    console.log(this.removeTimeout)
   }
-  cancelDeleteTrackTimeout(track: Track){
-    this.removeTimeout.forEach(timeout => {
-      if(timeout.name === track.name){
-        console.log("Cancel Timeout", timeout)
+
+  cancelDeleteTrackTimeout(track: Track) {
+    this.removeTimeout.forEach((timeout, i) => {
+
+      if (timeout.id === track.id) {
 
         clearTimeout(timeout.timeout)
+        this.removeTimeout.splice(i, 1);
       }
     });
   }
-  */
 }
