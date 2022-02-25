@@ -76,4 +76,10 @@ describe('TrackService', () => {
 
     req.flush(mockDeleteTrackResponse);
   })
+
+  it('should emit play Track Event with id', () => {
+    spyOn(service.playTrackEvent, 'emit');
+    service.emitPlayTrackEvent("IDTEST");
+    expect(service.playTrackEvent.emit).toHaveBeenCalledWith("IDTEST")
+  })
 });

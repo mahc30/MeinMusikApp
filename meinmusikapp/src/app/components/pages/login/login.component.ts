@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { deleteToken } from 'src/app/shared/helpers/localStorage';
 
@@ -9,10 +10,11 @@ import { deleteToken } from 'src/app/shared/helpers/localStorage';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    deleteToken()
+    if(this.authService.isAuth()) this.router.navigate(['home'])
+    else deleteToken()
   }
 
   requestAuthorization(){

@@ -38,7 +38,7 @@ describe('TracksGridComponent', () => {
 
   it('should delete track on event by Saved Track', () => {
     spyOn(component, 'deleteTrack');
-    component.handleTrackEvent(0);
+    component.handleTrackDelete(0);
 
     expect(component.deleteTrack).toHaveBeenCalled();
   });
@@ -49,7 +49,7 @@ describe('TracksGridComponent', () => {
     let mockNotSavedTrack = mockSavedTrackObj;
     mockNotSavedTrack.isSaved = false;
     component.displayTracks.push(mockSavedTrackObj as unknown as Track);
-    component.handleTrackEvent(1);
+    component.handleTrackDelete(1);
 
     expect(component.saveTrack).toHaveBeenCalled()
   });
@@ -60,7 +60,7 @@ describe('TracksGridComponent', () => {
     };
     spyOn(trackService, 'deleteTracks').withArgs(mockQuery).and.returnValue(of({}))
 
-    component.deleteTrack(component.displayTracks[0]);
+    component.deleteTrack(component.displayTracks[0], -1);
 
     expect(trackService.deleteTracks).toHaveBeenCalledOnceWith(mockQuery);
   });
@@ -73,5 +73,11 @@ describe('TracksGridComponent', () => {
 
     component.saveTrack(component.displayTracks[0])
     expect(trackService.saveTracks).toHaveBeenCalledOnceWith(mockQuery);
+  })
+
+  it('should emit event on handleTrackPlay', () => {
+    spyOn(trackService, 'emitPlayTrackEvent')
+    component.handleTrackPlay("TestID");
+    expect(trackService.emitPlayTrackEvent).toHaveBeenCalledWith("TestID")
   })
 });

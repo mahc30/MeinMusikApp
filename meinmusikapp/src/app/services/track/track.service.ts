@@ -69,8 +69,4 @@ export class TrackService {
   emitPlayTrackEvent(id: string): void{
     this.playTrackEvent.emit(id);
   }
-
-  getCurrentTrackId(): string {
-    return this.currentTrackId;
-  }
 }

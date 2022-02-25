@@ -27,10 +27,16 @@ describe('TrackComponent', () => {
   });
 
   it('should emit event with default index', () => {
-    spyOn(component.trackEvent, 'emit');
+    spyOn(component.deleteTrackEvent, 'emit');
 
-    component.emitTrackEvent();
+    component.emitTrackDeleteEvent();
 
-    expect(component.trackEvent.emit).toHaveBeenCalledOnceWith(-1)
+    expect(component.deleteTrackEvent.emit).toHaveBeenCalledOnceWith(-1)
   })
+
+  it('should emit event using track service', () =>{
+    spyOn(component.playTrackEvent, 'emit')
+    component.emitTrackPlayEvent();
+    expect(component.playTrackEvent.emit).toHaveBeenCalled()
+  });
 });
