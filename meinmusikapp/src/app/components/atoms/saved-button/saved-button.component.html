@@ -1,12 +1,12 @@
 <div *ngIf="isSaved; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-    <mat-icon (click)="toggle()">
+    <mat-icon class="hover:cursor-pointer" (click)="toggle()">
         favorite
     </mat-icon>
 </ng-template>
 
 <ng-template #elseBlock>
-    <mat-icon (click)="toggle()">
+    <mat-icon class="hover:cursor-pointer" (click)="toggle()">
         favorite_border
     </mat-icon>
 </ng-template>

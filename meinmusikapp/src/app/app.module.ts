@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { GlobalHttpInterceptorService } from './services/interceptor/global-http-interceptor.service';
 import { DomseguroPipe } from './pipes/domSeguroPipe';
 import { MusicEmbedComponent } from './components/atoms/music-embed/music-embed.component';
+import { DeleteTrackDialogComponent } from './components/atoms/delete-track-dialog/delete-track-dialog.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MusicEmbedComponent } from './components/atoms/music-embed/music-embed.
     NavigationComponent,
     SavedButtonComponent,
     DomseguroPipe,
-    MusicEmbedComponent
+    MusicEmbedComponent,
+    DeleteTrackDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,14 +40,19 @@ import { MusicEmbedComponent } from './components/atoms/music-embed/music-embed.
     AppRoutingModule,
     NoopAnimationsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   exports: [
     MatIconModule,
     MatButtonModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
