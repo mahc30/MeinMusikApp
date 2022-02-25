@@ -43,7 +43,7 @@ export class TracksGridComponent implements OnInit {
       deleteTopTrackList()
       deleteSavedTrackList()
 
-      //this.openDialog(track)
+      this.openDialog(track)
     });
   }
 
