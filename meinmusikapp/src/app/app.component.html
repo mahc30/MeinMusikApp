@@ -1,11 +1,15 @@
-<header class="">
-    <app-navigation *ngIf="authService.isAuth()"></app-navigation>
-</header>
+<div class="body-wrapper mx-auto">
 
-<main class="overflow-y-scroll no-scrollbar">
-    <router-outlet class=""></router-outlet>
-</main>
+    <header class="">
+        <app-navigation *ngIf="authService.isAuth()"></app-navigation>
+    </header>
 
-<footer class="border border-t-2 border-solid border-black">
-    <app-music-embed *ngIf="authService.isAuth()"></app-music-embed>
-</footer>
+    <main class="overflow-y-scroll no-scrollbar">
+        <router-outlet class=""></router-outlet>
+    </main>
+
+    <footer class="border border-t-2 border-solid border-black">
+        <app-music-embed *ngIf="authService.isAuth()"></app-music-embed>
+    </footer>
+
+</div>
