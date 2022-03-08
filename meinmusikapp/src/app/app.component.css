@@ -7,6 +7,7 @@ html {
 }
 
 .body-wrapper {
+    height: 100%;
     max-width: 1920px;
     max-height: 1080px;
 }
@@ -16,11 +17,11 @@ header {
 }
 
 main {
-    height: 75%;
+    height: 80%;
 }
 
 footer {
-    height: 15%;
+    height: 10%;
 }
 
 img {
