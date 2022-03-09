@@ -2,5 +2,5 @@ projectKey=MeinMusikApp:Test
 serverUrl=http://sonarqube:9000
 serverVersion=9.3.0.51899
 dashboardUrl=http://sonarqube:9000/dashboard?id=MeinMusikApp%3ATest
-ceTaskId=AX9rNNej1wEWeGO3HTtu
-ceTaskUrl=http://sonarqube:9000/api/ce/task?id=AX9rNNej1wEWeGO3HTtu
+ceTaskId=AX9vMvpsn7r_OtfvZ3gl
+ceTaskUrl=http://sonarqube:9000/api/ce/task?id=AX9vMvpsn7r_OtfvZ3gl

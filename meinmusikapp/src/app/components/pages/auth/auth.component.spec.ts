@@ -46,7 +46,6 @@ describe('AuthComponent', () => {
     spyOn(component, 'redirect');
     component.ngOnInit();
     expect(component.redirect).toHaveBeenCalledOnceWith("login");
-    expect()
   })
 
 it('should request Token if valid request params exists', () => {

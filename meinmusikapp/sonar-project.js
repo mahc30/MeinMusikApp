@@ -12,7 +12,7 @@ sonarqubeScanner({
             "sonar.inclusions": "src/**",
             "sonar.tests": "src",
             "sonar.test.inclusions": "**/*.spec.ts",
-            "sonar.typescript.lcov.reportPaths": "coverage/meinmusikapp/lcov.info"
+            "sonar.javascript.lcov.reportPaths": "coverage/meinmusikapp/lcov.info"
         }
     },
     () => {}
