@@ -94,7 +94,7 @@ describe('HomeComponent', () => {
 
   it('should use cached top tracks if they exist', () => {
     setTopTrackList(mockTopItemsResponse.items);
-    component.loadUserSavedTracks()
+    component.loadUserTopTracks()
     expect(component.displayTracks.length).toBe(2)
     deleteTopTrackList()
   })

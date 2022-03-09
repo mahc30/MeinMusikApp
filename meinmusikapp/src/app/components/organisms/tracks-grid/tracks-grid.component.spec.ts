@@ -1,5 +1,7 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { TracksQueryById } from 'src/app/models/tracks-query-byId.i';
@@ -17,8 +19,8 @@ describe('TracksGridComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TracksGridComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [TrackService]
+      imports: [HttpClientTestingModule, RouterTestingModule, OverlayModule, MatDialogModule],
+      providers: [TrackService, MatDialog]
     })
       .compileComponents();
     trackService = TestBed.inject(TrackService);

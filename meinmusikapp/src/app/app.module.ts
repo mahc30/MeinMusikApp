@@ -19,6 +19,7 @@ import { DomseguroPipe } from './pipes/domSeguroPipe';
 import { MusicEmbedComponent } from './components/atoms/music-embed/music-embed.component';
 import { DeleteTrackDialogComponent } from './components/atoms/delete-track-dialog/delete-track-dialog.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
     HttpClientModule,
     AppRoutingModule,
     NoopAnimationsModule,
+    OverlayModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule
