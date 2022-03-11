@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LoginComponent } from 'src/app/components/pages/login/login.component';
 import { setToken } from 'src/app/shared/helpers/localStorage';
 
 import { AuthGuardService } from './auth-guard.service';
@@ -10,7 +11,10 @@ describe('AuthGuardService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule,
+         RouterTestingModule.withRoutes([
+           {path: 'login', component: LoginComponent}
+         ])],
 
     });
     service = TestBed.inject(AuthGuardService);

@@ -10,7 +10,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { TrackComponent } from './components/molecules/track/track.component';
 import { TracksGridComponent } from './components/organisms/tracks-grid/tracks-grid.component';
 import { NavigationComponent } from './components/organisms/navigation/navigation.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SavedButtonComponent } from './components/atoms/saved-button/saved-button.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,7 +43,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     OverlayModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   exports: [
     MatIconModule,

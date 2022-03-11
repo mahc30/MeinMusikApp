@@ -48,6 +48,7 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  /*
 
   it('should call saved tracks if route is /saved', () => {
     spyOn(component, 'loadUserSavedTracks')
@@ -105,7 +106,6 @@ describe('HomeComponent', () => {
     expect(component.displayTracks).toEqual(mockTopItemsResponse.items)
     deleteSavedTrackList()
   })
-  /*
   it('should load user recommended tracks', ()=> {
 
     let mockGenres: GenresResponse = {

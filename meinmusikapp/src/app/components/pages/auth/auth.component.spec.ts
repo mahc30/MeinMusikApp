@@ -31,6 +31,7 @@ describe('AuthComponent', () => {
     fixture = TestBed.createComponent(AuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    deleteToken()
   });
 
   afterEach(() => {
