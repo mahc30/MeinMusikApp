@@ -41,8 +41,7 @@ module.exports = function(config) {
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: [
-            //chromeHeadlessSupported ? 'ChromeHeadless' : 'Chrome'
-            'Chrome'
+            chromeHeadlessSupported ? 'ChromeHeadless' : 'Chrome'
         ],
         customLaunchers: {
             ChromeHeadless: {
@@ -50,8 +49,7 @@ module.exports = function(config) {
                 flags: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222']
             }
         },
-        //singleRun: true,
-        singleRun: false,
+        singleRun: true,
         restartOnFileChange: true
     });
 };
